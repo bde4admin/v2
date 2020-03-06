@@ -96,7 +96,7 @@ $(function() {
  $.fn.extend({
 	  replaceface : function(faces){
 		  for(i=0;i<60;i++){
-			  faces=faces.replace(eval('/#'+ (i+1) +'#/g'),'<img src="/images/face/'+(i+1)+'.gif">');
+			  faces=faces.replace(eval('/#'+ (i+1) +'#/g'),'<img src="https://cdn.jsdelivr.net/gh/bde4admin/v2/images/face/'+(i+1)+'.gif">');
 			  }
 		   $(this).html(faces);
 		   }
