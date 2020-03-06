@@ -1,0 +1,28 @@
+body {
+    background: #333 !important
+}
+.ui.body, .download-help {
+    background: #333 !important;
+}
+
+.ui.container, h2, label, section, dl, .download-help {
+    color: #b2b2b2 !important;
+}
+
+.ui.comments a, .ui.comments p, .ui.comments .text, .ui.comments .metadata {
+    color: rgba(255,255,255,.7) !important;
+}
+
+.ui.comments a:hover{
+    color: rgba(255,255,255,.7) !important;
+}
+
+input, textarea {
+    background: #444 !important;
+    color: #b2b2b2 !important;
+    border: none !important;
+}
+
+.ui.footer {
+    background: #000 !important;
+}
