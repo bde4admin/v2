@@ -1,19 +1,18 @@
-$(function () {
-  var h = window.location.href;
-  var mid = h.substring(h.lastIndexOf("/") + 1, h.indexOf('.htm'))
-  $.getJSON("/downloadInfo/list?mid=" + mid, function (list) {
+var h = window.location.href;
+var mid = h.substring(h.lastIndexOf("/") + 1, h.indexOf('.htm'))
+$.getJSON("/downloadInfo/list?mid=" + mid, function (list) {
 
-    list.map(function (d) {
-      var item = '<div class="item"><div class="content"><a class="parent" target="_blank" href="' + d.url + '"><em' +
-        ' class="left"' +
-        ' style="color:' +
-        ' red">' + d.downloadCategory.name + '：</em><em class="right ui text nowrap" title="' + d.url + '">' + d.url + '</em>' + (d.password != 'none' ? '<em' +
-          ' style="color:red">（' + d.password + '）</em>' : '') + '</a></div></div>';
-      $('#download-list').prepend(item)
-    });
-    $('#download-wrapper').css('display', 'block');
+  list.map(function (d) {
+    var item = '<div class="item"><div class="content"><a class="parent" target="_blank" href="' + d.url + '"><em' +
+      ' class="left"' +
+      ' style="color:' +
+      ' red">' + d.downloadCategory.name + '：</em><em class="right ui text nowrap" title="' + d.url + '">' + d.url + '</em>' + (d.password != 'none' ? '<em' +
+        ' style="color:red">（' + d.password + '）</em>' : '') + '</a></div></div>';
+    $('#download-list').prepend(item)
   });
-
+  $('#download-wrapper').css('display', 'block');
+});
+$(function () {
   var collapseDefaultContent = '展开';
   var collapseActiveContent = '收起';
   if ($('.summary').height() > (1.8 * 14 * 3)) {

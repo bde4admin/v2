@@ -80,7 +80,7 @@ $(function () {
       $('body').toast({
         position: 'top center',
         class: 'error',
-        message: result.msg,
+        message: result.msg == null ? '解析失败，请刷新重试，多次失败请留言报告。':result.msg,
         showProgress: 'bottom'
       });
     }
