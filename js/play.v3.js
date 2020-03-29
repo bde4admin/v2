@@ -25,7 +25,7 @@ $(function () {
         container: document.getElementById('video'),
         autoplay: true,
         video: {
-          url: result.url.indexOf('bde4') > 0 ? result.url : sites[index++] + ftn,
+          url: result.url,
           pic: '/images/play_window_pic.png'
         }
       });
