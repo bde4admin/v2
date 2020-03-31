@@ -99,7 +99,7 @@ $(function (){
   $('#comments-wrapper').replaceface($('#comments-wrapper').html());
   $('.reply').on('click',showReplay);
 
-  var page = 2, loading = false;
+  var page = 1, loading = false;
   $('#more-comment').click(function() {
     if (loading) return;
     loading = true;
@@ -185,6 +185,6 @@ $(function (){
       $('#comment-list').append($('#reply-form'));
     });
   });
+  $('#more-comment').click();
 });
-
 function mScroll(selector){$("html,body").stop(true);$("html,body").animate({scrollTop: $(selector).offset().top}, 500);}

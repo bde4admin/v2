@@ -82,9 +82,14 @@ $(document).ready(function (){
   }
   footerPosition();
   $(window).resize(footerPosition);
+  function urlencode (str) {
+    str = (str + '').toString();
 
+    return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').
+    replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+  }
     $('#search').click(function(){
-        var keyword = $('#keyword').val();
+        var keyword = urlencode($('#keyword').val().trim());
         if (keyword.trim() == '') {
             $('body').toast({
                 position: 'top center',
