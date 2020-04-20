@@ -185,6 +185,5 @@ $(function (){
       $('#comment-list').append($('#reply-form'));
     });
   });
-  $('#more-comment').click();
 });
 function mScroll(selector){$("html,body").stop(true);$("html,body").animate({scrollTop: $(selector).offset().top}, 500);}
