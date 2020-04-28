@@ -127,6 +127,27 @@ $(document).ready(function (){
             hide: 1000
         }
     });
+  $('#history').popup({
+    popup: '.history',
+    hoverable: true,
+    position: 'bottom center',
+    delay: {
+      show: 300,
+      hide: 1000
+    }
+  });
+  if($.cookie("recente")){
+    var json=eval("("+$.cookie("recente")+")");
+    var list="";
+    for(i=0;i<json.length;i++){
+      list = list + "<a class=\"item\" href='" + json[i].vod_url + "'>" +
+        "    <div class=\"content\">" +
+        json[i].vod_name + '----' +  json[i].vod_part +
+        "    </div>" +
+        "  </a>";
+    }
+    $("#history-list").append(list);
+  }
     $('#left-menu a.item').on('click', function () {
         $(this).addClass('active').siblings().removeClass('active');
     });
