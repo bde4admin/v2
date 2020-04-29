@@ -99,7 +99,7 @@ $(function (){
   $('#comments-wrapper').replaceface($('#comments-wrapper').html());
   $('.reply').on('click',showReplay);
 
-  var page = 1, loading = false;
+  var page = 2, loading = false;
   $('#more-comment').click(function() {
     if (loading) return;
     loading = true;
