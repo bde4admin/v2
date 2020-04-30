@@ -5,6 +5,7 @@ html, body { scroll-behavior:smooth;background: #f4f4f4 }
 a{color:#00b5ad}
 a:hover{color:#009c95}
 em{font-style: normal}
+ul{list-style: none}
 .ui.list .list>.item a.header,.ui.list>.item a.header{cursor:pointer;color:#00b5ad!important}
 .ui.list .list>.item>a.header:hover,.ui.list>.item a.header:hover{color:#009c95!important}
 .ui.list .list>.item>a.header:hover,.ui.list>.item>a.header:hover{color:#009c95!important}
@@ -567,4 +568,12 @@ dd, dt {
     width:22px;
     height: 22px;
     vertical-align: middle;
+}
+
+ul{list-style: none;margin-left:0;margin-right:0}
+.info0 ul li a {
+    margin-right: 5px;
+}
+.info0 ul li a:hover{
+    text-decoration: underline;
 }
