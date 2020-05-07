@@ -412,7 +412,7 @@ dd, dt {
 .play-list {
     margin-left: -1rem !important;
     border-radius: 0 !important;
-    height: 640px;
+    height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -446,8 +446,11 @@ dd, dt {
     .player-wrapper .ui.container {
         margin: 0 !important;
     }
-    .player, .play-list {
+    .player {
         height: 280px;
+    }
+    .play-list {
+        height: 240px;
     }
 }
 /*search page*/
@@ -570,7 +573,7 @@ dd, dt {
     vertical-align: middle;
 }
 
-ul{list-style: none;margin-left:0;margin-right:0}
+ul{list-style: none;margin-left:0 !important;margin-right:0}
 .info0 ul li a {
     margin-right: 5px;
 }

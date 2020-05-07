@@ -25,41 +25,60 @@ $(function () {
         container: document.getElementById('video'),
         autoplay: true,
         video: {
-          url: result.url,
+          url: (result.url.indexOf('bde4') > 0 || result.url.indexOf("url.cn") > 0) ? result.url : sites[index++] + ftn,
+          type: channel == 0 ? 'auto' : 'hls',
           pic: '/images/play_window_pic.png'
+        },
+        pluginOptions: {
+          hls: {
+            autoStartLoad: true,
+            startFragPrefetch: true,
+            maxBufferLength: 120
+          },
         }
       });
-      if (IsPC) {
-        var error = '<a href="/play-help.htm" target="_blank" style="margin-right: 10px;">播放问题？</a>';
-        var download = '<a href="' + result.url + '" target="_blank" style="color: #fff !important;margin-right: 10px;">下载</a>';
-        $('.xuanji').before(error + download);
-      } else {
-        $('.xuanji').before('<a href="' + result.url + '" target="_blank" style="color: #fff !important;margin-right: 10px;">下载</a>');
+      if (channel == 0) {
+        if (IsPC) {
+          var error = '<a href="/play-help.htm" target="_blank" style="margin-right: 10px;">播放问题？</a>';
+          var download = '<a href="' + result.url + '" target="_blank" style="color: #fff !important;margin-right: 10px;">下载</a>';
+          $('.xuanji').before(error + download);
+        } else {
+          $('.xuanji').before('<a href="' + result.url + '" target="_blank" style="color: #fff !important;margin-right: 10px;">下载</a>');
+        }
       }
       dp.on('error', function () {
-        var url = result.url;
-        if (index > sites.length) {
+        if (channel == 0) {
+          var url = result.url;
+          if (index > sites.length) {
+            $('body').toast({
+              position: 'top center',
+              class: 'error',
+              message: '视频格式不支持或地址失效，请刷新页面或者换安卓手机浏览器重试！',
+              showProgress: 'bottom'
+            });
+            dp.notice('视频格式不支持或地址失效，请刷新页面或者换安卓手机浏览器重试！', -1);
+            return;
+          }
+          dp.notice('视频加载中...未提示失败前请勿刷新页面！', 10000);
+          if (index == sites.length) {
+            index++;
+            url = result.url;
+          }
+          else
+            url = sites[index++] + ftn;
+
+          dp.switchVideo({
+            url: url.replace('https', 'http'),
+            pic: '/images/play_window_pic.png'
+          });
+        } else {
           $('body').toast({
             position: 'top center',
             class: 'error',
             message: '视频格式不支持或地址失效，请刷新页面或者换安卓手机浏览器重试！',
             showProgress: 'bottom'
           });
-          dp.notice('视频格式不支持或地址失效，请刷新页面或者换安卓手机浏览器重试！', -1);
-          return;
         }
-        dp.notice('视频加载中...未提示失败前请勿刷新页面！', 10000);
-        if (index == sites.length) {
-          index++;
-          url = result.url;
-        }
-        else
-          url = sites[index++] + ftn;
-
-        dp.switchVideo({
-          url: url.replace('https', 'http'),
-          pic: '/images/play_window_pic.png'
-        });
       });
 
       dp.on('loadedmetadata', function () {
@@ -80,7 +99,7 @@ $(function () {
       $('body').toast({
         position: 'top center',
         class: 'error',
-        message: result.msg == null ? '解析失败，请刷新重试，多次失败请留言报告。':result.msg,
+        message: result.msg,
         showProgress: 'bottom'
       });
     }
