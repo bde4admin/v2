@@ -573,7 +573,7 @@ dd, dt {
     vertical-align: middle;
 }
 
-ul{list-style: none;margin-left:0 !important;margin-right:0}
+ul{list-style: none;margin-left:0 !important;margin-right:0;padding-left:0}
 .info0 ul li a {
     margin-right: 5px;
 }
