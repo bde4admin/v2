@@ -135,8 +135,20 @@ $(function () {
       }
     });
     dp.oldSwitchQuality = dp.switchQuality;
-    var t, playUrl, ftn, index = 0;
+    var t = null, playUrl = null, ftn = null, index = 0;
+    function shuffle(a) {
+      var len = a.length;
+      for(var i=0;i<len;i++){
+        var end = len - 1 ;
+        var index = (Math.random()*(end + 1)) >> 0;
+        var t = a[end];
+        a[end] = a[index];
+        a[index] = t;
+      }
+      return a;
+    };
     var sites = ['\x68\x74\x74\x70\x3a\x2f\x2f\x74\x6a\x2d\x63\x74\x66\x73\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x78\x67\x2d\x63\x74\x66\x73\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x73\x7a\x2d\x63\x74\x66\x73\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x78\x61\x2d\x62\x74\x66\x73\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x63\x64\x2d\x63\x74\x66\x73\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x73\x68\x2d\x63\x74\x66\x73\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x67\x7a\x63\x2d\x64\x6f\x77\x6e\x6c\x6f\x61\x64\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x6e\x6a\x63\x2d\x64\x6f\x77\x6e\x6c\x6f\x61\x64\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d', '\x68\x74\x74\x70\x3a\x2f\x2f\x73\x7a\x2d\x64\x6f\x77\x6e\x6c\x6f\x61\x64\x2e\x66\x74\x6e\x2e\x71\x71\x2e\x63\x6f\x6d'];
+    shuffle(sites);
     dp.switchQuality = function(e) {
       t = this;
       //TODO 如果直链地址不存在则ajax获取，然后替换this.quality.url
@@ -152,7 +164,8 @@ $(function () {
                 result.url = result.url.replace("?rkey", new Date().getTime() + ".mp4?ver=6010&rkey").replace('https', 'http');
                 playUrl = result.url;
                 ftn = result.url.substring(result.url.lastIndexOf("/"));
-                t.url = result.url.indexOf('bde4') > 0 ? result.url : sites[index++] + ftn;
+                t.options.video.quality[e].url = result.url.indexOf('bde4') > 0 ? result.url : sites[index++] + ftn;
+
                 if (IsPC()) {
                   var error = '<a href="/play-help.htm" target="_blank" style="margin-right: 10px;">播放问题？</a>';
                   var download = '<a id="download" href="' + result.url + '" target="_blank" style="color: #fff !important;margin-right: 10px;">下载</a>';
@@ -166,11 +179,12 @@ $(function () {
           } catch (e) {
             dp.notice('切换失败！', 3000);
           }
+        } else {
+          dp.oldSwitchQuality(e);
         }
         if ($('#download')) {
           $('#download').show();
         }
-        dp.oldSwitchQuality(e);
       } else {
         dp.oldSwitchQuality(e);
         if ($('#download')) {
