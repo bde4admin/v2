@@ -412,7 +412,7 @@ dd, dt {
 .play-list {
     margin-left: -1rem !important;
     border-radius: 0 !important;
-    height: 600px;
+    height: 640px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -446,11 +446,8 @@ dd, dt {
     .player-wrapper .ui.container {
         margin: 0 !important;
     }
-    .player {
+    .player,.play-list {
         height: 280px;
-    }
-    .play-list {
-        height: 240px;
     }
 }
 /*search page*/
