@@ -215,7 +215,7 @@ $(function () {
         dp.notice('视频加载中...未提示失败前请勿刷新页面！', 10000);
         if (index == sites.length) {
           index++;
-          url = result.url;
+          url = playUrl;
         } else
           url = sites[index++] + ftn;
 
