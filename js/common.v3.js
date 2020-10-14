@@ -228,7 +228,6 @@ function IsPC() {
         }, options.newOn);
     };
 })(jQuery);
-/*
 // Function called if AdBlock is not detected
 function adBlockNotDetected() {
   //alert('AdBlock is not enabled');
@@ -263,7 +262,7 @@ if(typeof  FuckAdBlock === 'undefined') {
 } else {
   // Otherwise, our functions we add to FuckAdBlock for a classic detection
   fuckAdBlock.on(true, adBlockDetected).on(false, adBlockNotDetected);
-}*/
+}
 
 window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
   // 判断是否按下F12，F12键码为123
