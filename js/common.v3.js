@@ -194,7 +194,7 @@ function IsPC() {
   return flag;
 }
 
-if( window.canRunAds === undefined ){
+function adBlockDetected() {
   if (IsPC()) {
     var mask = document.createElement('div');
     mask.style.width = '100vw';
