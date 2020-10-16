@@ -195,7 +195,6 @@ function IsPC() {
 }
 
 function adBlockDetected() {
-  if (IsPC()) {
     var mask = document.createElement('div');
     mask.style.width = '100vw';
     mask.style.height = '100vh';
@@ -212,7 +211,6 @@ function adBlockDetected() {
     mask.innerText = '请关闭广告拦截插件对本站的拦截！';
     document.body.appendChild(mask);
     alert('检测到Adblock插件，请关闭对本站的拦截！');
-  }
 }
 
 (function($){
