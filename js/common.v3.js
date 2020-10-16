@@ -194,7 +194,29 @@ function IsPC() {
   return flag;
 }
 
+if( window.canRunAds === undefined ){
+  if (IsPC()) {
+    var mask = document.createElement('div');
+    mask.style.width = '100vw';
+    mask.style.height = '100vh';
+    mask.style.background = '#000';
+    mask.style.opacity = '.6';
+    mask.style.position = 'fixed';
+    mask.style.top = '0';
+    mask.style.left = '0';
+    mask.style.fontSize = '100px';
+    mask.style.textAlign = 'center';
+    mask.style.color = '#f00';
+    mask.style.paddingTop = '300px';
+    mask.style.zIndex = 10086;
+    mask.innerText = '请关闭广告拦截插件对本站的拦截！';
+    document.body.appendChild(mask);
+    alert('检测到Adblock插件，请关闭对本站的拦截！');
+  }
+}
+
 (function($){
+
     $.fn.snow = function(options){
         var $flake = $('<div id="snowbox" />').css({'position': 'fixed','z-index':'9999', 'top': '-50px', 'pointer-events':'none'}).html('&#10052;'),
             documentHeight 	= document.body.clientWidth,
@@ -228,41 +250,6 @@ function IsPC() {
         }, options.newOn);
     };
 })(jQuery);
-// Function called if AdBlock is not detected
-function adBlockNotDetected() {
-  //alert('AdBlock is not enabled');
-}
-// Function called if AdBlock is detected
-function adBlockDetected() {
-  if (IsPC()) {
-    var mask = document.createElement('div');
-    mask.style.width = '100vw';
-    mask.style.height = '100vh';
-    mask.style.background = '#000';
-    mask.style.opacity = '.6';
-    mask.style.position = 'fixed';
-    mask.style.top = '0';
-    mask.style.left = '0';
-    mask.style.fontSize = '100px';
-    mask.style.textAlign = 'center';
-    mask.style.color = '#f00';
-    mask.style.paddingTop = '300px';
-    mask.style.zIndex = 10086;
-    mask.innerText = '请关闭广告拦截插件对本站的拦截！';
-    document.body.appendChild(mask);
-    alert('检测到Adblock插件，请关闭对本站的拦截！');
-  }
-}
-// We observe if the variable "fuckAdBlock" exists
-if(typeof  FuckAdBlock === 'undefined') {
-  // If it does not exist, it means that AdBlock blocking the script FuckAdBlock
-  // Therefore the function "adBlockDetected" is executed
-  // PS: The function is executed on the "document ready" in order to select the HTML with jQuery
-  $(document).ready(adBlockDetected);
-} else {
-  // Otherwise, our functions we add to FuckAdBlock for a classic detection
-  fuckAdBlock.on(true, adBlockDetected).on(false, adBlockNotDetected);
-}
 
 window.onkeydown = window.onkeyup = window.onkeypress = function (event) {
   // 判断是否按下F12，F12键码为123
